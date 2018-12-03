@@ -7,7 +7,7 @@ import Nprogress from 'nprogress'
 import { fire } from '../libs/tools/notify'
 
 if (process.browser) {
-    require('./rem.js')
+    // require('./rem.js')
     require('./light7.js')
     require('./wx.js')
 }

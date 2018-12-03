@@ -4,6 +4,8 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
+const path = require('path')
+const fs = require('fs')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -17,6 +19,11 @@ app.prepare().then(() => {
         // This tells it to parse the query portion of the URL.
         const parsedUrl = parse(req.url, true)
         const { pathname, query } = parsedUrl
+
+        // 微信授权需要用到
+        if (staticCheck(pathname, req, res)) {
+            return;
+        }
 
         // wap 只有一个入口 app
         return app.render(req, res, '/app', query, parsedUrl)
@@ -33,3 +40,20 @@ app.prepare().then(() => {
         console.log('> Ready on http://localhost:3000')
     })
 })
+
+
+const staticCheck = (pathname, req, res) => {
+    if (/\.(txt)/.test(pathname) || /rem\.js/.test(pathname)) {
+        var staticPath = path.resolve(__dirname, "static")
+        //获取资源文件绝对路径
+        var filePath = path.join(staticPath, pathname)
+        if (filePath.indexOf("favicon.ico") === -1) {//屏蔽浏览器默认对favicon.ico的请求
+            //同步读取file
+            var fileContent = fs.readFileSync(filePath, "binary")
+            res.write(fileContent, "binary")
+        }
+        res.end()
+        return true;
+    }
+    return false;
+}
