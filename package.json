@@ -6,11 +6,10 @@
   "scripts": {
     "dev1": "next",
     "dev": "node server.js",
-    "test": "cross-env NODE_ENV=production  && next -p 2000",
+    "test": "cross-env NODE_ENV=production next -p 2000",
     "build": "next build",
     "start1": "next start -p 2000",
-    "start": "cross-env NODE_ENV=production  && node server.js",
-    "ProdEnv": "cross-env NODE_ENV=production",
+    "start": "cross-env NODE_ENV=production node server.js",
     "start-prod2": "pm2 start ./node_modules/next/dist/bin/next-start -p 2002 -h localhost",
     "lint": "node node_modules/eslint/bin/eslint.js --ext .js -c .eslintrc.js pages --fix"
   },

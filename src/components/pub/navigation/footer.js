@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
             payload: {
                 routeName: href,
                 animate: false,
-                createNew:false,
+                createNew: false,
             }
         })
     }
@@ -44,6 +44,9 @@ export default class Footer extends React.Component {
         }, false)
 
         this.isVisible = isVisible
+        if (isVisible) {
+            style.display = "block"
+        }
 
         return <div className={"bar bar-tab footer animated " + (isVisible ? "slideInUp" : "slideOutDown")}
             style={style}>

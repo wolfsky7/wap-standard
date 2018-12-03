@@ -1,5 +1,5 @@
-const renderItem = () => {
-    return <div style={styles.masterItem}>
+const renderItem = (navigation) => {
+    return <div style={styles.masterItem} onClick={() => navigation.navTo('/app/i2')}>
         <div style={styles.masterHead}>
             <div style={styles.masterHeadAvatar}></div>
             <div style={styles.masterHeadTitle}>
@@ -25,18 +25,18 @@ const renderItem = () => {
     </div>
 }
 
-export default () => {
+export default ({navigation}) => {
     return <div>
         <div style={styles.whiteSpace} />
-        {renderItem()}
+        {renderItem(navigation)}
         <div style={styles.whiteSpace} />
-        {renderItem()}
+        {renderItem(navigation)}
         <div style={styles.whiteSpace} />
-        {renderItem()}
+        {renderItem(navigation)}
         <div style={styles.whiteSpace} />
-        {renderItem()}
+        {renderItem(navigation)}
         <div style={styles.whiteSpace} />
-        {renderItem()}
+        {renderItem(navigation)}
     </div>
 }
 
